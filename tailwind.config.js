@@ -9,7 +9,11 @@ module.exports = {
       'gray-light': '#B4B4B4',
       'gray-lightest': '#E4E4E4',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        archivo: ['Archivo', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

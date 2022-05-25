@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-archivo;
+  }
+
+  /*Archivo Font Family
+      400 - Regular
+      500 - Medium
+      600 - Semi Bold
+      700 - Bold
+  */
+  @font-face {
+    font-family: 'Silka';
+    font-weight: 400;
+    src: url('../public/fonts/Archivo-Regular.ttf') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Silka';
+    font-weight: 500;
+    src: url('../public/fonts/Archivo-Medium.ttf') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Silka';
+    font-weight: 600;
+    src: url('../public/fonts/Archivo-SemiBold.ttf') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Silka';
+    font-weight: 700;
+    src: url('../public/fonts/Archivo-Bold.ttf') format('woff');
+  }
+}
