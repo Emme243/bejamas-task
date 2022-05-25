@@ -7,6 +7,10 @@
     @apply font-archivo;
   }
 
+  .my-container {
+    @apply px-4 xs:px-6 sm:container;
+  }
+
   /*Archivo Font Family
       400 - Regular
       500 - Medium

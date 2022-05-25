@@ -1,6 +1,21 @@
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      xs: '350px',
+      sm: '576px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+      },
+    },
     colors: {
       black: '#000000',
       white: '#ffffff',
@@ -12,6 +27,9 @@ module.exports = {
     extend: {
       fontFamily: {
         archivo: ['Archivo', 'sans-serif'],
+      },
+      borderWidth: {
+        3: '3px',
       },
     },
   },

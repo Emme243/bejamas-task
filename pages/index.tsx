@@ -1,5 +1,11 @@
+import Navbar from '../components/Navbar';
+
 const Home = () => {
-  return <div className="text-6xl">Hola</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
 
 export default Home;
