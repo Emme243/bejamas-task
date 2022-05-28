@@ -31,7 +31,16 @@ module.exports = {
       borderWidth: {
         3: '3px',
       },
+      gridTemplateAreas: {
+        'featured-artwork': ['name button', 'image image'],
+      },
+      gridTemplateColumns: {
+        'featured-artwork': '1fr 1fr',
+      },
+      gridTemplateRows: {
+        'featured-artwork': 'auto auto',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@savvywombat/tailwindcss-grid-areas')],
 };
