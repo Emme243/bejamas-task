@@ -9,17 +9,37 @@ type Artwork {
   category: String
   createdAt: String
   description: String
+  details: ArtworkDetails
   id: ID
-  imageUrl: String
   isBestseller: Boolean
   isFeatured: Boolean
   name: String
   price: Float
 }
 
+type ArtworkDetails {
+  height: Int
+  id: Int
+  recommendations: [RecommendedArtwork]
+  size: Int
+  src: ImageSrc
+  width: Int
+}
+
 type DisplayedArtworkResponse {
   artworks: [Artwork]
   total: Int
+}
+
+type ImageSrc {
+  landscape: String
+  large: String
+  large2x: String
+  medium: String
+  original: String
+  portrait: String
+  small: String
+  tiny: String
 }
 
 type Mutation {
@@ -44,6 +64,11 @@ type Query {
   ): DisplayedArtworkResponse
   featuredArtwork: Artwork
   totalArtworksToDisplay(filter: FilterInput): Int
+}
+
+type RecommendedArtwork {
+  name: String
+  src: ImageSrc
 }
 
 enum OrderBy {

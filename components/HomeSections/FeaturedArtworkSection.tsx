@@ -1,38 +1,79 @@
-import { Artwork } from '../../models/Artwork';
+import Image from 'next/image';
 import { useQuery } from '@apollo/client';
+import { Artwork } from '../../models/Artwork';
 import FEATURED_ARTWORK_QUERY from '../../graphql/queries/featuredArtworkQuery';
+import FeaturedArtworkLoader from '../Loaders/FeaturedArtworkLoader';
 
 function FeaturedArtworkSection() {
   const { data, loading, error } = useQuery(FEATURED_ARTWORK_QUERY);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <FeaturedArtworkLoader />;
   if (error) return <p>Oh no... {error.message}</p>;
 
-  const featuredArtwork = data.featuredArtwork as Artwork;
+  const {
+    category,
+    description,
+    name,
+    details: {
+      width,
+      height,
+      size,
+      src: { landscape },
+      recommendations,
+    },
+  } = data.featuredArtwork as Artwork;
+
   return (
     <>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eos fugiat ipsa laudantium,
-      nostrum numquam obcaecati porro quae quas quo recusandae saepe tempore velit! Asperiores
-      dolores ipsam modi quaerat. Odio. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Beatae dignissimos ipsa molestias qui. A ab ad adipisci, at consequuntur deleniti dolor eum
-      exercitationem, expedita, itaque libero minima officia pariatur perferendis quas recusandae
-      rerum vel. Accusamus asperiores blanditiis consequuntur dolorem doloremque dolores eos eum
-      harum, id illo incidunt ipsam mollitia natus nulla obcaecati officia optio provident quasi rem
-      sapiente soluta temporibus tenetur, ut vero, voluptatum? Accusantium aliquid aperiam at aut
-      blanditiis deleniti dolores doloribus fugiat fugit laudantium libero natus nulla perferendis
-      placeat quaerat quasi quia quisquam quo quod quos ratione repellat, repellendus rerum sapiente
-      totam ut voluptates voluptatibus. Ad, asperiores illo illum modi mollitia numquam quae quaerat
-      vel. Dolorum facere nihil odio quisquam voluptates. Accusamus aliquid autem consequatur
-      consequuntur cum, dolore doloribus eaque earum eius error esse et excepturi illo illum labore
-      libero magnam maxime modi necessitatibus nisi porro quae quaerat quasi quidem quo rem repellat
-      sed sequi sint tempore ullam unde vel voluptas? Blanditiis cupiditate debitis deserunt dicta
-      minima omnis provident reprehenderit voluptas. Asperiores itaque, laboriosam. Eaque, rem
-      tenetur? Eligendi, facere, obcaecati. Eveniet fugit illum maiores? Architecto autem,
-      consequatur dolor doloremque ducimus esse eum exercitationem id illo ipsam, laudantium, nulla
-      quos reiciendis sed temporibus vero voluptate! At consequuntur debitis doloremque esse labore
-      nam perferendis porro possimus, quia repellendus tempore vitae voluptates? A animi aperiam,
-      architecto asperiores cum, deserunt eaque iure necessitatibus odio pariatur perspiciatis
-      provident qui voluptatum. Eius harum, quas!
+      <div className="space-y-5">
+        <span className="text-2xl font-bold">{name}</span>
+        <div className="relative">
+          <Image
+            src={landscape}
+            alt={name}
+            width={1200}
+            height={600}
+            layout="responsive"
+            priority
+          />
+          <div className="absolute bottom-0 left-0 flex h-12 w-48 items-center justify-center bg-white">
+            <span className="text-lg font-bold">Photo of the day</span>
+          </div>
+        </div>
+        <button className="h-12 w-full bg-black text-lg font-semibold uppercase text-white">
+          Add to cart
+        </button>
+      </div>
+      <div className="mt-5 space-y-5">
+        <div className="space-y-3">
+          <h2 className="text-xl font-bold">About the {name}</h2>
+          <h3 className="text-xl font-bold capitalize text-gray">{category}</h3>
+          {description.split('\n').map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="space-y-3 text-xl">
+          <h2 className="font-bold">People also buy</h2>
+          <div className="grid grid-cols-3 gap-x-4">
+            {recommendations.map(recommendation => (
+              <Image
+                key={recommendation.name}
+                src={recommendation.src.portrait}
+                alt={recommendation.name}
+                width={400}
+                height={600}
+              />
+            ))}
+          </div>
+          <div>
+            <h2 className="mb-1 font-bold">Details</h2>
+            <p className="text-gray">
+              Size: {width} x {height} pixels
+            </p>
+            <p className="text-gray">Size: {Math.round(size / 1000)} MB</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

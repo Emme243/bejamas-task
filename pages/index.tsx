@@ -1,16 +1,14 @@
 import Navbar from '../components/Navbar';
 import FeaturedArtworkSection from '../components/HomeSections/FeaturedArtworkSection';
-import { Artwork } from '../models/Artwork';
-
-interface Props {
-  featuredArtwork: Artwork;
-}
 
 const Home = () => {
   return (
     <div className="my-container">
       <Navbar />
-      <FeaturedArtworkSection />
+      <div className="mt-4">
+        <FeaturedArtworkSection />
+      </div>
+      <hr className="my-8 h-1 border-0 bg-gray-lightest" />
     </div>
   );
 };

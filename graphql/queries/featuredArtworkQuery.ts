@@ -1,13 +1,25 @@
 import { gql } from '@apollo/client';
 
 const FEATURED_ARTWORK_QUERY = gql`
-  query {
+  query getFeaturedArtwork {
     featuredArtwork {
-      id
-      imageUrl
-      name
-      description
       category
+      description
+      name
+      details {
+        width
+        height
+        size
+        src {
+          landscape
+        }
+        recommendations {
+          name
+          src {
+            portrait
+          }
+        }
+      }
     }
   }
 `;
