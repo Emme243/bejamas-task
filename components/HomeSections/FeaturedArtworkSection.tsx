@@ -25,6 +25,7 @@ function FeaturedArtworkSection() {
 
   return (
     <>
+      {/*BIG ARTWORK*/}
       <div className="space-y-5 lg:grid lg:grid-cols-featured-artwork lg:grid-rows-featured-artwork lg:items-center lg:gap-y-5 lg:gap-x-4 lg:space-y-0 lg:grid-areas-featured-artwork">
         <span className="text-2xl font-bold lg:grid-in-name">{name}</span>
         <div className="relative lg:grid-in-image">
@@ -44,6 +45,7 @@ function FeaturedArtworkSection() {
           Add to cart
         </button>
       </div>
+      {/*ARTWORK DESCRIPTION AND RECOMMENDED ARTWORKS*/}
       <div className="mt-5 space-y-5 lg:mt-9 lg:flex lg:space-x-16 lg:space-y-0">
         <div className="space-y-3">
           <h2 className="text-xl font-bold">About the {name}</h2>

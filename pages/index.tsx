@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import FeaturedArtworkSection from '../components/HomeSections/FeaturedArtworkSection';
+import ArtworkSection from '../components/HomeSections/ArtworkSection';
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <FeaturedArtworkSection />
       </div>
       <hr className="my-8 h-1 border-0 bg-gray-lightest" />
+      <ArtworkSection />
     </div>
   );
 };

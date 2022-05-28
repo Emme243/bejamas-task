@@ -22,7 +22,7 @@ function CartDropdown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute top-20 right-4 ml-10 max-h-[50vh] w-full max-w-sm overflow-y-auto border-4 border-gray-lightest bg-white px-5 sm:right-0">
+        <Menu.Items className="absolute top-20 right-4 z-10 ml-10 max-h-[50vh] w-full max-w-sm overflow-y-auto border-4 border-gray-lightest bg-white px-5 sm:right-0">
           <CartDropdownItem />
           <CartDropdownItem />
           <CartDropdownItem />
