@@ -1,0 +1,62 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Artwork {
+  category: String
+  createdAt: String
+  description: String
+  id: ID
+  imageUrl: String
+  isBestseller: Boolean
+  isFeatured: Boolean
+  name: String
+  price: Float
+}
+
+type DisplayedArtworkResponse {
+  artworks: [Artwork]
+  total: Int
+}
+
+type Mutation {
+  createArtwork(
+    category: String
+    description: String
+    imageUrl: String
+    isBestseller: Boolean
+    isFeatured: Boolean
+    name: String
+    price: Float
+  ): Artwork
+}
+
+type Query {
+  categories: [String]
+  displayedArtworks(
+    filter: FilterInput
+    limit: Int
+    page: Int
+    sort: SortInput
+  ): DisplayedArtworkResponse
+  featuredArtwork: Artwork
+  totalArtworksToDisplay(filter: FilterInput): Int
+}
+
+enum OrderBy {
+  ASC
+  DESC
+}
+
+input FilterInput {
+  key: String
+  values: [String]
+}
+
+input SortInput {
+  key: String
+  orderBy: OrderBy
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Bejamas GraphQL Schema",
+  "schemaPath": "./graphql/schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "http://localhost:7000/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": true
+      }
+    }
+  }
+}
