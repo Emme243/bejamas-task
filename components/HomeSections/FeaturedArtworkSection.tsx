@@ -7,6 +7,7 @@ import FeaturedArtworkLoader from '../Loaders/FeaturedArtworkLoader';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
 import { useAppDispatch } from '../../hooks/useAppStore';
 import { addToCart } from '../../store/cartSlice';
+import AddToCartButton from '../Cart/AddToCartButton';
 
 function FeaturedArtworkSection() {
   const dispatch = useAppDispatch();
@@ -54,12 +55,11 @@ function FeaturedArtworkSection() {
             <span className="text-lg font-bold md:text-xl xl:text-2xl">Photo of the day</span>
           </div>
         </div>
-        <button
+
+        <AddToCartButton
           className="h-12 w-full bg-black text-lg font-semibold uppercase text-white lg:w-64 lg:place-self-end lg:grid-in-button"
-          onClick={() => dispatch(addToCart(featuredArtwork))}
-        >
-          Add to cart
-        </button>
+          artwork={featuredArtwork}
+        />
       </div>
       {/*ARTWORK DESCRIPTION AND RECOMMENDED ARTWORKS*/}
       <div className="mt-5 space-y-5 lg:mt-9 lg:flex lg:space-x-16 lg:space-y-0">

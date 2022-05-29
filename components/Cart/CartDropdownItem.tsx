@@ -27,12 +27,12 @@ function CartDropdownItem({ artwork }: Props) {
       >
         <Icon icon="emojione-monotone:heavy-multiplication-x" className="cursor-pointer" />
       </div>
-      <div className="flex items-center justify-between space-x-3">
-        <div className="flex flex-col">
+      <div className="flex items-center justify-between">
+        <div className="flex w-3/4 flex-col pr-4">
           <span className="font-bold">{name}</span>
           <span className="text-xl text-gray">${price}</span>
         </div>
-        <Image className="object-cover" width={128} height={77} src={landscape} alt={name} />
+        <Image className="object-cover" width={150} height={100} src={landscape} alt={name} />
       </div>
     </Menu.Item>
   );
