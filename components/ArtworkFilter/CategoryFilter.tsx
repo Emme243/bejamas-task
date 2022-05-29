@@ -1,12 +1,12 @@
 import { ChangeEvent } from 'react';
 import { useQuery } from '@apollo/client';
-import CATEGORIES_QUERY from '../../graphql/queries/categoriesQuery';
+import CATEGORY_QUERY from '../../graphql/queries/categoryQuery';
 import Checkbox from '../Inputs/Checkbox';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { addCategoryFilter, removeCategoryFilter } from '../../store/categoryFilterSlice';
 
 function CategoryFilter() {
-  const { data, loading, error } = useQuery(CATEGORIES_QUERY);
+  const { data, loading, error } = useQuery(CATEGORY_QUERY);
   const categoryFilterValues = useAppSelector(state => state.categoryFilter.values);
   const dispatch = useAppDispatch();
   const handleCategoryFilterChange = (e: ChangeEvent<HTMLInputElement>) => {

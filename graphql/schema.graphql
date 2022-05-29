@@ -82,7 +82,7 @@ enum FilterType {
   RANGE
 }
 
-enum OrderBy {
+enum SortType {
   ASC
   DESC
 }
@@ -94,6 +94,6 @@ input FilterInput {
 }
 
 input SortInput {
-  key: String
-  orderBy: OrderBy
+  by: String
+  type: SortType
 }
