@@ -9,7 +9,7 @@ const Home = () => {
       <div className="mt-4">
         <FeaturedArtworkSection />
       </div>
-      <hr className="my-8 h-1 border-0 bg-gray-lightest" />
+      <hr className="mt-8 mb-5 h-1 border-0 bg-gray-lightest" />
       <ArtworkSection />
     </div>
   );

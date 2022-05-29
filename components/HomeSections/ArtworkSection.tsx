@@ -12,7 +12,7 @@ function ArtworkSection() {
   return (
     <>
       {/*FILTERING AND SORTING OPTIONS*/}
-      <div className="flex items-center justify-between">
+      <div className="sticky top-0 z-20 flex items-center justify-between bg-white py-3">
         <div className="space-x-2 text-xl">
           <span className="font-bold">Photography</span>
           <span className="font-semibold">/</span>
