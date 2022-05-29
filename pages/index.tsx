@@ -4,7 +4,7 @@ import ArtworkSection from '../components/HomeSections/ArtworkSection';
 
 const Home = () => {
   return (
-    <div className="my-container">
+    <div className="my-container mb-7">
       <Navbar />
       <div className="mt-4">
         <FeaturedArtworkSection />

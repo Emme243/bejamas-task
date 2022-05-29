@@ -35,7 +35,7 @@ function ArtworkSection() {
         <div className="hidden lg:block lg:w-1/4">
           <ArtworkFilter />
         </div>
-        <div className="flex-grow">Aquí van las img</div>
+        <div className="mt-3 lg:flex-grow">Aquí van las img</div>
       </div>
     </>
   );
