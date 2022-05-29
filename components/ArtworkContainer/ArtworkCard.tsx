@@ -7,12 +7,16 @@ function ArtworkCard({ artwork }: { artwork: Artwork }) {
     details: {
       src: { portrait },
     },
-    price,
+    isBestseller,
     name,
+    price,
   } = artwork;
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="relative flex w-full flex-col">
+      {isBestseller && (
+        <div className="text-dark absolute top-0 left-0 z-10 bg-white px-2 py-1">Bestseller</div>
+      )}
       <div className="group relative mb-2">
         <Image
           src={portrait}
