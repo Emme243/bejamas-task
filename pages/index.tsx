@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Ui/Navbar';
 import FeaturedArtworkSection from '../components/HomeSections/FeaturedArtworkSection';
 import ArtworkSection from '../components/HomeSections/ArtworkSection';
 

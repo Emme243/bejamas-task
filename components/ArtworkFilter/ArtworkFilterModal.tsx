@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import { useAppSelector, useAppDispatch } from '../hooks/useAppStore';
-import { closeArtworkFilterModal } from '../store/artworkFilterSlice';
-import useTailwindBreakpoints from '../hooks/useTailwindBreakpoints';
-import ArtworkFilter from './ArtworkFilter';
+import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
+import { closeArtworkFilterModal } from '../../store/artworkFilterSlice';
+import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
+import ArtworkFilter from './index';
 
 function ArtworkFilterModal() {
   const dispatch = useAppDispatch();

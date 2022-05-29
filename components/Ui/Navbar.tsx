@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import CartDropdown from './CartDropdown';
+import CartDropdown from '../Cart/CartDropdown';
 
 function Navbar() {
   return (
