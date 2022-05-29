@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
-import { closeArtworkFilterModal } from '../../store/artworkFilterModalSlice';
-import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
 import ArtworkFilter from './index';
+import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
+import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
+import { closeArtworkFilterModal } from '../../store/artworkFilterModalSlice';
+import { emptyPriceRangeFilterValues } from '../../store/priceRangeFilterState';
+import { emptyCategoryFilter } from '../../store/categoryFilterSlice';
 
 function ArtworkFilterModal() {
   const dispatch = useAppDispatch();
@@ -18,6 +20,11 @@ function ArtworkFilterModal() {
   useEffect(() => {
     dispatch(closeArtworkFilterModal());
   }, [isScreenLarge]);
+
+  const clearArtworkFilters = () => {
+    dispatch(emptyPriceRangeFilterValues());
+    dispatch(emptyCategoryFilter());
+  };
 
   return (
     <Transition className="fixed top-0 left-0 h-screen w-screen" show={isFilterOpen}>
@@ -56,7 +63,10 @@ function ArtworkFilterModal() {
 
         {/*Buttons*/}
         <div className="sticky bottom-0 left-0 flex w-full space-x-3 bg-white px-6 py-5 drop-shadow-[3px_0px_3px_rgba(0,0,0,0.25)]">
-          <button className="w-full border-2 border-black bg-white py-1 text-xl font-semibold uppercase text-black">
+          <button
+            className="w-full border-2 border-black bg-white py-1 text-xl font-semibold uppercase text-black"
+            onClick={clearArtworkFilters}
+          >
             Clear
           </button>
           <button className="w-full border-2 border-black bg-black py-1 text-xl font-semibold uppercase text-white">

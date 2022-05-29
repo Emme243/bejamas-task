@@ -2,6 +2,12 @@ import { useQuery } from '@apollo/client';
 import { ChangeEvent, useState } from 'react';
 import PRICE_RANGE_QUERY from '../../graphql/queries/priceRangeQuery';
 import Checkbox from '../Inputs/Checkbox';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../hooks/useAppStore';
+import {
+  emptyPriceRangeFilterValues,
+  setPriceRangeFilterValues,
+} from '../../store/priceRangeFilterState';
 
 interface ArtworkPriceRange {
   minPrice: number;
@@ -12,11 +18,12 @@ const DIVISION_PRICE = 400;
 
 function PriceRangeFilter() {
   const { data, loading, error } = useQuery(PRICE_RANGE_QUERY);
-  const [priceRangeFilterValues, setPriceRangeFilterValues] = useState<number[]>([]);
+  const dispatch = useDispatch();
+  const priceRangeFilterValues = useAppSelector(state => state.priceRangeFilter.values);
   const handlePriceFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.target;
-    if (checked) setPriceRangeFilterValues(value.split(',').map(Number));
-    else setPriceRangeFilterValues([]);
+    if (checked) dispatch(setPriceRangeFilterValues(value.split(',').map(Number)));
+    else dispatch(emptyPriceRangeFilterValues());
   };
 
   if (loading) return <p>Loading...</p>;

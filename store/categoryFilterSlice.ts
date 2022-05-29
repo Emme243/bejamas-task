@@ -18,8 +18,12 @@ export const categoryFilterSlice = createSlice({
     removeCategoryFilter: (state, action: PayloadAction<string>) => {
       state.values = state.values.filter(category => category !== action.payload);
     },
+    emptyCategoryFilter: state => {
+      state.values = [];
+    },
   },
 });
 
-export const { addCategoryFilter, removeCategoryFilter } = categoryFilterSlice.actions;
+export const { addCategoryFilter, removeCategoryFilter, emptyCategoryFilter } =
+  categoryFilterSlice.actions;
 export default categoryFilterSlice.reducer;
