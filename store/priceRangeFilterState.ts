@@ -14,7 +14,7 @@ export const priceRangeFilterReducer = createSlice({
   name: 'priceRangeFilter',
   initialState,
   reducers: {
-    setPriceRangeFilterValues: (state, action: PayloadAction<number[]>) => {
+    setPriceRangeValues: (state, action: PayloadAction<number[]>) => {
       state.values = action.payload;
       state.queryRoute = action.payload.join(',');
     },
@@ -25,6 +25,5 @@ export const priceRangeFilterReducer = createSlice({
   },
 });
 
-export const { setPriceRangeFilterValues, emptyPriceRangeFilterValues } =
-  priceRangeFilterReducer.actions;
+export const { setPriceRangeValues, emptyPriceRangeFilterValues } = priceRangeFilterReducer.actions;
 export default priceRangeFilterReducer.reducer;

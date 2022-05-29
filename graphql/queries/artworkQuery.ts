@@ -19,3 +19,5 @@ const ARTWORK_QUERY = gql`
     }
   }
 `;
+
+export default ARTWORK_QUERY;

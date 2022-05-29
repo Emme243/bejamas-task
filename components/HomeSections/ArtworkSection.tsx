@@ -33,10 +33,10 @@ function ArtworkSection() {
         <ArtworkFilterModal />
       </div>
       <div className="lg:mt-8 lg:flex lg:justify-between lg:space-x-6">
-        <div className="hidden lg:block lg:w-1/4">
+        <div className="hidden lg:block lg:w-1/2 xl:w-1/4">
           <ArtworkFilter />
         </div>
-        <div className="mt-3 lg:mt-0 lg:flex-grow">
+        <div className="mt-3 lg:mt-0 lg:flex-shrink">
           <ArtworkContainer />
         </div>
       </div>

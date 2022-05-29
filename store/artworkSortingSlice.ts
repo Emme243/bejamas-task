@@ -19,11 +19,14 @@ export const artworkSortingSlice = createSlice({
     setSortBy: (state, action: PayloadAction<string>) => {
       state.sortBy = action.payload;
     },
+    setSortType: (state, action: PayloadAction<SortType>) => {
+      state.sortType = action.payload;
+    },
     toggleSortType: state => {
       state.sortType = state.sortType === 'ASC' ? 'DESC' : 'ASC';
     },
   },
 });
 
-export const { setSortBy, toggleSortType } = artworkSortingSlice.actions;
+export const { setSortBy, setSortType, toggleSortType } = artworkSortingSlice.actions;
 export default artworkSortingSlice.reducer;

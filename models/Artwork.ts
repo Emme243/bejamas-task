@@ -1,4 +1,5 @@
 export interface Artwork {
+  id: string;
   category: string;
   createdAt: string;
   description: string;

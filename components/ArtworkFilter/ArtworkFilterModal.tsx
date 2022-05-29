@@ -27,7 +27,7 @@ function ArtworkFilterModal() {
   };
 
   return (
-    <Transition className="fixed top-0 left-0 h-screen w-screen" show={isFilterOpen}>
+    <Transition className="fixed top-0 left-0 z-10 h-screen w-screen" show={isFilterOpen}>
       <Transition.Child
         className="h-full w-full bg-black/20"
         enter="ease-out duration-300"

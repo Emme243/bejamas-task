@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks/useAppStore';
 import {
   emptyPriceRangeFilterValues,
-  setPriceRangeFilterValues,
+  setPriceRangeValues,
 } from '../../store/priceRangeFilterState';
 
 interface ArtworkPriceRange {
@@ -22,7 +22,7 @@ function PriceRangeFilter() {
   const priceRangeFilterValues = useAppSelector(state => state.priceRangeFilter.values);
   const handlePriceFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.target;
-    if (checked) dispatch(setPriceRangeFilterValues(value.split(',').map(Number)));
+    if (checked) dispatch(setPriceRangeValues(value.split(',').map(Number)));
     else dispatch(emptyPriceRangeFilterValues());
   };
 
