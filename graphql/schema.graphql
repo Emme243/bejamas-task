@@ -26,6 +26,11 @@ type ArtworkDetails {
   width: Int
 }
 
+type ArtworkPriceRange {
+  maxPrice: Float
+  minPrice: Float
+}
+
 type DisplayedArtworkResponse {
   artworks: [Artwork]
   total: Int
@@ -55,20 +60,26 @@ type Mutation {
 }
 
 type Query {
+  artworkPriceRange: ArtworkPriceRange
   categories: [String]
   displayedArtworks(
-    filter: FilterInput
+    filter: [FilterInput]
     limit: Int
     page: Int
     sort: SortInput
   ): DisplayedArtworkResponse
   featuredArtwork: Artwork
-  totalArtworksToDisplay(filter: FilterInput): Int
+  totalArtworksToDisplay(filter: [FilterInput]): Int
 }
 
 type RecommendedArtwork {
   name: String
   src: ImageSrc
+}
+
+enum FilterType {
+  IN
+  RANGE
 }
 
 enum OrderBy {
@@ -78,6 +89,7 @@ enum OrderBy {
 
 input FilterInput {
   key: String
+  type: FilterType
   values: [String]
 }
 

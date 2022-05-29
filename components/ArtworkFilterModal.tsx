@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
 import { useAppSelector, useAppDispatch } from '../hooks/useAppStore';
-import useMediaQuery from '../hooks/useMediaQuery';
 import { closeArtworkFilterModal } from '../store/artworkFilterSlice';
+import useTailwindBreakpoints from '../hooks/useTailwindBreakpoints';
 import ArtworkFilter from './ArtworkFilter';
 
 function ArtworkFilterModal() {
@@ -14,7 +14,7 @@ function ArtworkFilterModal() {
     document.body.classList.toggle('overflow-hidden', isFilterOpen);
   }, [isFilterOpen]);
 
-  const isScreenLarge = useMediaQuery('(min-width: 1024px)');
+  const { isScreenLarge } = useTailwindBreakpoints();
   useEffect(() => {
     dispatch(closeArtworkFilterModal());
   }, [isScreenLarge]);

@@ -1,15 +1,24 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Artwork } from '../../models/Artwork';
 import FEATURED_ARTWORK_QUERY from '../../graphql/queries/featuredArtworkQuery';
 import FeaturedArtworkLoader from '../Loaders/FeaturedArtworkLoader';
+import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
 
 function FeaturedArtworkSection() {
   const { data, loading, error } = useQuery(FEATURED_ARTWORK_QUERY);
 
+  const { isScreenLarge } = useTailwindBreakpoints();
+  const [imageCoverHeight, setImageCoverHeight] = useState(600);
+  useEffect(() => {
+    setImageCoverHeight(isScreenLarge ? 400 : 600);
+  }, [isScreenLarge]);
+
   if (loading) return <FeaturedArtworkLoader />;
   if (error) return <p>Oh no... {error.message}</p>;
 
+  const featuredArtwork = data.featuredArtwork as Artwork;
   const {
     category,
     description,
@@ -21,7 +30,7 @@ function FeaturedArtworkSection() {
       src: { landscape },
       recommendations,
     },
-  } = data.featuredArtwork as Artwork;
+  } = featuredArtwork;
 
   return (
     <>
@@ -30,12 +39,13 @@ function FeaturedArtworkSection() {
         <span className="text-2xl font-bold lg:grid-in-name">{name}</span>
         <div className="relative lg:grid-in-image">
           <Image
-            src={landscape}
             alt={name}
-            width={1200}
-            height={600}
+            className="object-cover"
+            height={imageCoverHeight}
             layout="responsive"
             priority
+            src={landscape}
+            width={1200}
           />
           <div className="absolute bottom-0 left-0 flex h-12 w-48 items-center justify-center bg-white md:h-16 md:w-52 xl:h-20 xl:w-72">
             <span className="text-lg font-bold md:text-xl xl:text-2xl">Photo of the day</span>
@@ -61,11 +71,12 @@ function FeaturedArtworkSection() {
           <div className="grid grid-cols-3 gap-x-4 xl:gap-x-8">
             {recommendations.map(recommendation => (
               <Image
+                alt={recommendation.name}
+                className="object-cover"
+                height={600}
                 key={recommendation.name}
                 src={recommendation.src.portrait}
-                alt={recommendation.name}
                 width={400}
-                height={600}
               />
             ))}
           </div>
