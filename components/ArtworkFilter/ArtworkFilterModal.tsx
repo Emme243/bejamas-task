@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
-import { closeArtworkFilterModal } from '../../store/artworkFilterSlice';
+import { closeArtworkFilterModal } from '../../store/artworkFilterModalSlice';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
 import ArtworkFilter from './index';
 
 function ArtworkFilterModal() {
   const dispatch = useAppDispatch();
 
-  const isFilterOpen = useAppSelector(state => state.artworkFilter.isOpen);
+  const isFilterOpen = useAppSelector(state => state.artworkFilterModal.isOpen);
   useEffect(() => {
     document.body.classList.toggle('overflow-hidden', isFilterOpen);
   }, [isFilterOpen]);

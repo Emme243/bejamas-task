@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
-import { openArtworkFilterModal } from '../../store/artworkFilterSlice';
+import { openArtworkFilterModal } from '../../store/artworkFilterModalSlice';
 import ArtworkFilter from '../ArtworkFilter';
 import ArtworkFilterModal from '../ArtworkFilter/ArtworkFilterModal';
 import ArtworkSorting from '../ArtworkFilter/ArtworkSorting';
@@ -31,11 +31,11 @@ function ArtworkSection() {
       <div className="lg:hidden">
         <ArtworkFilterModal />
       </div>
-      <div className="lg:mt-8 lg:flex lg:justify-between">
+      <div className="lg:mt-8 lg:flex lg:justify-between lg:space-x-6">
         <div className="hidden lg:block lg:w-1/4">
           <ArtworkFilter />
         </div>
-        <div className="mt-3 lg:flex-grow">Aquí van las img</div>
+        <div className="mt-3 lg:mt-0 lg:flex-grow">Aquí van las img</div>
       </div>
     </>
   );

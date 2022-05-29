@@ -1,16 +1,18 @@
+import { ChangeEvent } from 'react';
 import { useQuery } from '@apollo/client';
 import CATEGORIES_QUERY from '../../graphql/queries/categoriesQuery';
-import { ChangeEvent, useState } from 'react';
 import Checkbox from '../Inputs/Checkbox';
+import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
+import { addCategoryFilter, removeCategoryFilter } from '../../store/categoryFilterSlice';
 
 function CategoryFilter() {
   const { data, loading, error } = useQuery(CATEGORIES_QUERY);
-  const [categoryFilterValues, setCategoryFilterValues] = useState<string[]>([]);
+  const categoryFilterValues = useAppSelector(state => state.categoryFilter.values);
+  const dispatch = useAppDispatch();
   const handleCategoryFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    if (categoryFilterValues.includes(value))
-      setCategoryFilterValues(categoryFilterValues.filter(item => item !== value));
-    else setCategoryFilterValues([...categoryFilterValues, value]);
+    if (categoryFilterValues.includes(value)) dispatch(removeCategoryFilter(value));
+    else dispatch(addCategoryFilter(value));
   };
 
   if (loading) return <p>Loading categories...</p>;
