@@ -51,6 +51,16 @@ function ArtworkFilterModal() {
         </div>
         <hr className="my-4 h-1 border-0 bg-gray-lightest" />
         <ArtworkFilter />
+
+        {/*Buttons*/}
+        <div className="absolute bottom-0 left-0 flex w-full space-x-3 bg-white px-6 py-5 drop-shadow-[3px_0px_3px_rgba(0,0,0,0.25)]">
+          <button className="w-full border-2 border-black bg-white py-1 text-xl font-semibold uppercase text-black">
+            Clear
+          </button>
+          <button className="w-full border-2 border-black bg-black py-1 text-xl font-semibold uppercase text-white">
+            Save
+          </button>
+        </div>
       </Transition.Child>
     </Transition>
   );
