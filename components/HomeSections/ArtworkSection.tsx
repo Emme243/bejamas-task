@@ -4,6 +4,7 @@ import { openArtworkFilterModal } from '../../store/artworkFilterModalSlice';
 import ArtworkFilter from '../ArtworkFilter';
 import ArtworkFilterModal from '../ArtworkFilter/ArtworkFilterModal';
 import ArtworkSorting from '../ArtworkFilter/ArtworkSorting';
+import ArtworkContainer from '../ArtworkContainer';
 
 function ArtworkSection() {
   const dispatch = useDispatch();
@@ -35,7 +36,9 @@ function ArtworkSection() {
         <div className="hidden lg:block lg:w-1/4">
           <ArtworkFilter />
         </div>
-        <div className="mt-3 lg:mt-0 lg:flex-grow">Aquí van las img</div>
+        <div className="mt-3 lg:mt-0 lg:flex-grow">
+          <ArtworkContainer />
+        </div>
       </div>
     </>
   );

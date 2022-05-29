@@ -18,12 +18,12 @@ function CategoryFilter() {
   if (loading) return <p>Loading categories...</p>;
   if (error) return <p>Error getting categories :(</p>;
 
-  const categories = data.categories as string[];
+  const categories = [...(data.categories as string[])].sort();
   return (
     <>
       <h3 className="font-bold">Category</h3>
       <div className="mt-3 space-y-3">
-        {categories.map((category, idx) => (
+        {categories.map(category => (
           <Checkbox
             key={category}
             onChange={handleCategoryFilterChange}
