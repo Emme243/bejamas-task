@@ -3,6 +3,7 @@ import artworkFilterModalReducer from './artworkFilterModalSlice';
 import categoryFilterReducer from './categoryFilterSlice';
 import priceRangeFilterReducer from './priceRangeFilterState';
 import artworkSortingReducer from './artworkSortingSlice';
+import cartReducer from './cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     categoryFilter: categoryFilterReducer,
     priceRangeFilter: priceRangeFilterReducer,
     artworkSorting: artworkSortingReducer,
+    cart: cartReducer,
   },
 });
 

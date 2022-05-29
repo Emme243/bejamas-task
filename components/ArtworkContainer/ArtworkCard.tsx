@@ -1,7 +1,10 @@
 import { Artwork } from '../../models/Artwork';
 import Image from 'next/image';
+import { useAppDispatch } from '../../hooks/useAppStore';
+import { addToCart } from '../../store/cartSlice';
 
 function ArtworkCard({ artwork }: { artwork: Artwork }) {
+  const dispatch = useAppDispatch();
   const {
     category,
     details: {
@@ -26,7 +29,10 @@ function ArtworkCard({ artwork }: { artwork: Artwork }) {
           width={320}
           className="z-0 object-cover"
         />
-        <button className="absolute bottom-0 left-0 hidden h-12 w-full bg-black text-lg font-semibold uppercase text-white group-hover:block">
+        <button
+          className="absolute bottom-0 left-0 hidden h-12 w-full bg-black text-lg font-semibold uppercase text-white group-hover:block"
+          onClick={() => dispatch(addToCart(artwork))}
+        >
           Add to cart
         </button>
       </div>

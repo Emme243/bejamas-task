@@ -18,7 +18,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: Props) {
           <button
             key={index}
             onClick={() => onPageChange(page)}
-            className={`text-xl ${currentPage === page && 'text-black'}`}
+            className={`xs:text-lg sm:text-xl ${currentPage === page && 'text-black'}`}
           >
             {page}
           </button>

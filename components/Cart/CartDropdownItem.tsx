@@ -1,24 +1,38 @@
+import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { Menu } from '@headlessui/react';
+import { Artwork } from '../../models/Artwork';
+import { removeFromCart } from '../../store/cartSlice';
+import { useAppDispatch } from '../../hooks/useAppStore';
 
-function CartDropdownItem() {
+interface Props {
+  artwork: Artwork;
+}
+
+function CartDropdownItem({ artwork }: Props) {
+  const dispatch = useAppDispatch();
+  const {
+    name,
+    price,
+    details: {
+      src: { landscape },
+    },
+  } = artwork;
+
   return (
     <Menu.Item as="div" className="border-b-2 border-gray-lightest py-5">
-      <div className="mb-4 flex justify-end text-lg">
+      <div
+        className="mb-4 flex justify-end text-lg"
+        onClick={() => dispatch(removeFromCart(artwork))}
+      >
         <Icon icon="emojione-monotone:heavy-multiplication-x" className="cursor-pointer" />
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between space-x-3">
         <div className="flex flex-col">
-          <span className="font-bold">Samurai King Resting</span>
-          <span className="text-xl text-gray">$10000.00</span>
+          <span className="font-bold">{name}</span>
+          <span className="text-xl text-gray">${price}</span>
         </div>
-        <div className="h-full">
-          <img
-            className="h-auto w-28"
-            src="https://images.pexels.com/photos/11582120/pexels-photo-11582120.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            alt="Puerta de color roja"
-          />
-        </div>
+        <Image className="object-cover" width={128} height={77} src={landscape} alt={name} />
       </div>
     </Menu.Item>
   );

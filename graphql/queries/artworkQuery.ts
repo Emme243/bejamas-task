@@ -13,6 +13,7 @@ const ARTWORK_QUERY = gql`
         details {
           src {
             portrait
+            landscape
           }
         }
       }

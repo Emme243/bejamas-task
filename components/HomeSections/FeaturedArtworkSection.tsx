@@ -5,8 +5,11 @@ import { Artwork } from '../../models/Artwork';
 import FEATURED_ARTWORK_QUERY from '../../graphql/queries/featuredArtworkQuery';
 import FeaturedArtworkLoader from '../Loaders/FeaturedArtworkLoader';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
+import { useAppDispatch } from '../../hooks/useAppStore';
+import { addToCart } from '../../store/cartSlice';
 
 function FeaturedArtworkSection() {
+  const dispatch = useAppDispatch();
   const { data, loading, error } = useQuery(FEATURED_ARTWORK_QUERY);
 
   const { isScreenLarge } = useTailwindBreakpoints();
@@ -51,7 +54,10 @@ function FeaturedArtworkSection() {
             <span className="text-lg font-bold md:text-xl xl:text-2xl">Photo of the day</span>
           </div>
         </div>
-        <button className="h-12 w-full bg-black text-lg font-semibold uppercase text-white lg:w-64 lg:place-self-end lg:grid-in-button">
+        <button
+          className="h-12 w-full bg-black text-lg font-semibold uppercase text-white lg:w-64 lg:place-self-end lg:grid-in-button"
+          onClick={() => dispatch(addToCart(featuredArtwork))}
+        >
           Add to cart
         </button>
       </div>
