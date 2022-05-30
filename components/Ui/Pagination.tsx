@@ -6,11 +6,16 @@ interface Props {
   onPageChange: (page: number) => void;
 }
 
+const buttonSizeClasses = 'min-h-[48px] min-w-[48px]';
+const arrowButtonClasses = 'inline-flex items-center justify-center text-lg';
 function Pagination({ currentPage, totalPages, onPageChange }: Props) {
   return (
-    <div className="space-x-4 text-gray-middle">
+    <div className="text-gray-middle">
       {currentPage !== 1 && (
-        <button onClick={() => onPageChange(currentPage - 1)}>
+        <button
+          className={`${arrowButtonClasses} ${buttonSizeClasses}`}
+          onClick={() => onPageChange(currentPage - 1)}
+        >
           <Icon icon="akar-icons:chevron-left"></Icon>
         </button>
       )}
@@ -21,7 +26,9 @@ function Pagination({ currentPage, totalPages, onPageChange }: Props) {
           <button
             key={index}
             onClick={() => onPageChange(page)}
-            className={`xs:text-lg sm:text-xl ${currentPage === page && 'text-black'}`}
+            className={`xs:text-lg sm:text-xl ${buttonSizeClasses} ${
+              currentPage === page && 'text-black'
+            }`}
           >
             {page}
           </button>
@@ -29,7 +36,10 @@ function Pagination({ currentPage, totalPages, onPageChange }: Props) {
       })}
 
       {currentPage !== totalPages && (
-        <button onClick={() => onPageChange(currentPage + 1)}>
+        <button
+          className={`${arrowButtonClasses} ${buttonSizeClasses}`}
+          onClick={() => onPageChange(currentPage + 1)}
+        >
           <Icon icon="akar-icons:chevron-right"></Icon>
         </button>
       )}
