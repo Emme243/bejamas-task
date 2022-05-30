@@ -12,7 +12,9 @@ function AddToCartButton({ artwork, className }: Props) {
   const cart = useAppSelector(state => state.cart.artworks);
 
   const handleClick = () => {
-    const cartDropdownButton = document.getElementById('headlessui-menu-button-:R32m:');
+    const cartDropdownButton = document.querySelector<HTMLButtonElement>(
+      '[id^="headlessui-menu-button"]'
+    );
     cartDropdownButton?.click();
     dispatch(addToCart(artwork));
   };
