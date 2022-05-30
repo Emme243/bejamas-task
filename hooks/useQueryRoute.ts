@@ -12,42 +12,42 @@ interface Query {
 function useQueryRoute() {
   const router = useRouter();
 
-  function setQueryParamsToUrl(query: Query, queryName: keyof Query, shouldRemove = false): void {
-    const newQuery: Query = { ...router.query, ...query };
-    if (shouldRemove) delete newQuery[queryName];
-    const queryString = Object.entries(newQuery)
+  function setQueryParamsToUrl(query: Query): void {
+    const queryString = Object.entries(query)
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
     router.push(`/?${queryString}`, undefined, { shallow: true });
   }
 
   function resetQueryParams() {
-    router.push('/?', undefined, { shallow: true });
+    setQueryParamsToUrl({});
   }
 
   function setCategoriesToUrl(categories: string[]) {
-    const query: Query = { categories: categories.join(',') };
-    setQueryParamsToUrl(query, 'categories', categories.length === 0);
+    const query: Query = { ...router.query, categories: categories.join(','), currentPage: '1' };
+    if (categories.length === 0) delete query.categories;
+    setQueryParamsToUrl(query);
   }
 
   function setCurrentPageToUrl(page: number) {
-    const query: Query = { currentPage: page.toString() };
-    setQueryParamsToUrl(query, 'currentPage');
+    const query: Query = { ...router.query, currentPage: page.toString() };
+    setQueryParamsToUrl(query);
   }
 
   function setPriceRangeToUrl(priceRange: number[]) {
-    const query: Query = { priceRange: priceRange.join(',') };
-    setQueryParamsToUrl(query, 'priceRange', priceRange.length === 0);
+    const query: Query = { ...router.query, priceRange: priceRange.join(','), currentPage: '1' };
+    if (priceRange.length === 0) delete query.priceRange;
+    setQueryParamsToUrl(query);
   }
 
   function setSortByToUrl(sortBy: string) {
-    const query: Query = { sortBy };
-    setQueryParamsToUrl(query, 'sortBy');
+    const query: Query = { ...router.query, sortBy };
+    setQueryParamsToUrl(query);
   }
 
   function setSortTypeToUrl(sortType: SortType) {
-    const query: Query = { sortType };
-    setQueryParamsToUrl(query, 'sortType');
+    const query: Query = { ...router.query, sortType };
+    setQueryParamsToUrl(query);
   }
 
   return {
