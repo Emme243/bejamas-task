@@ -1,9 +1,9 @@
 import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
 
-function ArtworkFilter() {
+function ArtworkFilter({ className }: { className?: string }) {
   return (
-    <div className="text-xl">
+    <div className={`text-xl ${className}`}>
       <CategoryFilter />
       <hr className="my-6 h-[1px] border-none bg-gray-lightest " />
       <PriceRangeFilter />

@@ -9,7 +9,6 @@ function CartDropdown() {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(state => state.cart.artworks);
   useEffect(() => {
-    console.log('chido');
     dispatch(getCartFromLocalStorage());
   }, [dispatch]);
 
