@@ -1,5 +1,5 @@
 # Bejamas task
-You can find the final project at [https://emmanuel-bejamas-task.netlify.app/](https://emmanuel-bejamas-task.netlify.app/) 
+You can find the final result at [https://emmanuel-bejamas-task.netlify.app/](https://emmanuel-bejamas-task.netlify.app/) 
 
 ## Frontend Stack
 - [TypeScript](https://www.typescriptlang.org/)
