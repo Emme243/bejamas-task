@@ -9,9 +9,12 @@ interface Props {
 function Pagination({ currentPage, totalPages, onPageChange }: Props) {
   return (
     <div className="space-x-4 text-gray-middle">
-      <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
-        <Icon icon="akar-icons:chevron-left"></Icon>
-      </button>
+      {currentPage !== 1 && (
+        <button onClick={() => onPageChange(currentPage - 1)}>
+          <Icon icon="akar-icons:chevron-left"></Icon>
+        </button>
+      )}
+
       {Array.from({ length: totalPages }, (_, index) => {
         const page = index + 1;
         return (
@@ -24,9 +27,12 @@ function Pagination({ currentPage, totalPages, onPageChange }: Props) {
           </button>
         );
       })}
-      <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-        <Icon icon="akar-icons:chevron-right"></Icon>
-      </button>
+
+      {currentPage !== totalPages && (
+        <button onClick={() => onPageChange(currentPage + 1)}>
+          <Icon icon="akar-icons:chevron-right"></Icon>
+        </button>
+      )}
     </div>
   );
 }
