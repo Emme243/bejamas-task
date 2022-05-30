@@ -1,18 +1,31 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import CATEGORY_QUERY from '../../graphql/queries/categoryQuery';
+import { useRouter } from 'next/router';
 import Checkbox from '../Inputs/Checkbox';
+import CATEGORY_QUERY from '../../graphql/queries/categoryQuery';
+import { setCategories } from '../../store/artworkFilterSlice';
+import useQueryRoute from '../../hooks/useQueryRoute';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { addCategoryFilter, removeCategoryFilter } from '../../store/categoryFilterSlice';
 
 function CategoryFilter() {
   const { data, loading, error } = useQuery(CATEGORY_QUERY);
-  const categoryFilterValues = useAppSelector(state => state.categoryFilter.values);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { setCategoriesToUrl } = useQueryRoute();
+  const categoryFilter = useAppSelector(state => state.artworkFilter.categories);
+
+  useEffect(() => {
+    const categoryQuery = router.query.categories as string | undefined;
+    const categories = categoryQuery ? categoryQuery.split(',') : [];
+    dispatch(setCategories(categories));
+  }, [dispatch, router.query.categories]);
+
   const handleCategoryFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    if (categoryFilterValues.includes(value)) dispatch(removeCategoryFilter(value));
-    else dispatch(addCategoryFilter(value));
+    const { value: category } = e.target;
+    const categories = categoryFilter.includes(category)
+      ? categoryFilter.filter(c => c !== category)
+      : [...categoryFilter, category];
+    setCategoriesToUrl(categories);
   };
 
   if (loading) return <p>Loading categories...</p>;
@@ -27,7 +40,7 @@ function CategoryFilter() {
           <Checkbox
             key={category}
             onChange={handleCategoryFilterChange}
-            isChecked={categoryFilterValues.includes(category)}
+            isChecked={categoryFilter.includes(category)}
             value={category}
           >
             <span className="capitalize">{category}</span>

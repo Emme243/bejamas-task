@@ -7,7 +7,8 @@ import useQueryRoute from '../../hooks/useQueryRoute';
 
 const ARTWORKS_PER_PAGE = 6;
 function ArtworkContainer({ className }: { className?: string }) {
-  const { categories, currentPage, priceRange, sortBy, sortType, setPageToUrl } = useQueryRoute();
+  const { categories, currentPage, priceRange, sortBy, sortType, setCurrentPageToUrl } =
+    useQueryRoute();
 
   const filterInput = [];
   if (categories.length > 0) filterInput.push({ key: 'category', type: 'IN', values: categories });
@@ -40,7 +41,11 @@ function ArtworkContainer({ className }: { className?: string }) {
       </div>
 
       <div className="mt-10 text-center">
-        <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setPageToUrl} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={setCurrentPageToUrl}
+        />
       </div>
     </div>
   );

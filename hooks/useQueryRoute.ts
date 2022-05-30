@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 interface Query {
@@ -6,54 +6,44 @@ interface Query {
   currentPage?: string;
   priceRange?: string;
   sortBy?: string;
-  sortType?: 'ASC' | 'DESC';
+  sortType?: string;
 }
 
 function useQueryRoute() {
   const router = useRouter();
-  const [categories, setCategories] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [priceRange, setPriceRange] = useState<number[]>([]);
-  const [sortBy, setSortBy] = useState<string>('name');
-  const [sortType, setSortType] = useState<'ASC' | 'DESC'>('DESC');
+  const [categories] = useState<string[]>([]);
+  const [currentPage] = useState<number>(1);
+  const [priceRange] = useState<number[]>([]);
+  const [sortBy] = useState<string>('name');
+  const [sortType] = useState<'ASC' | 'DESC'>('DESC');
 
-  useEffect(() => {
-    console.log('hola 1');
-    const query = queryStringToObject(router.asPath.substring(2));
-    setCategories(query.categories ? query.categories.split(',') : []);
-    setCurrentPage(query.currentPage ? +query.currentPage : 1);
-    setPriceRange(query.priceRange ? query.priceRange.split(',').map(Number) : []);
-    setSortBy(query.sortBy || 'name');
-    setSortType(query.sortType || 'ASC');
-  }, [router.asPath]);
-
-  function setPageToUrl(page: number) {
-    const query = { ...router.query, currentPage: page.toString() };
-    router.push(`/?${objectToQueryString(query)}`, undefined, { shallow: true });
+  function setQueryParamsToUrl(query: Query): void {
+    const queryString = Object.entries(query)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+    router.push(`/?${queryString}`, undefined, { shallow: true });
   }
 
-  function queryStringToObject(queryString: string): Query {
-    const queryObject: any = {};
-    const queryArray = queryString.split('&');
-    queryArray.forEach((query: string) => {
-      const [key, value] = query.split('=');
-      queryObject[key] = value;
-    });
-    return queryObject;
+  function setCategoriesToUrl(categories: string[]) {
+    const query: Query = { ...router.query, categories: categories.join(',') };
+    if (categories.length === 0) delete query.categories;
+    setQueryParamsToUrl(query);
   }
 
-  function objectToQueryString(queryObject: { [key: string]: string }): string {
-    const queryArray = Object.keys(queryObject).map((key: string) => `${key}=${queryObject[key]}`);
-    return queryArray.join('&');
+  function setCurrentPageToUrl(page: number) {
+    const query: Query = { ...router.query, currentPage: page.toString() };
+    if (!page) delete query.currentPage;
+    setQueryParamsToUrl(query);
   }
 
   return {
+    setCategoriesToUrl,
+    setCurrentPageToUrl,
     categories,
     currentPage,
     priceRange,
     sortBy,
     sortType,
-    setPageToUrl,
   };
 }
 

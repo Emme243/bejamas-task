@@ -14,6 +14,10 @@ export const categoryFilterSlice = createSlice({
   name: 'categoryFilter',
   initialState,
   reducers: {
+    setCategoryFilter: (state, action: PayloadAction<{ values: string[]; queryRoute: string }>) => {
+      state.values = action.payload.values;
+      state.queryRoute = action.payload.queryRoute;
+    },
     addCategoryFilter: (state, action: PayloadAction<string>) => {
       state.values.push(action.payload);
       state.queryRoute = state.values.join(',');
@@ -29,6 +33,6 @@ export const categoryFilterSlice = createSlice({
   },
 });
 
-export const { addCategoryFilter, removeCategoryFilter, emptyCategoryFilter } =
+export const { addCategoryFilter, removeCategoryFilter, emptyCategoryFilter, setCategoryFilter } =
   categoryFilterSlice.actions;
 export default categoryFilterSlice.reducer;
