@@ -41,7 +41,7 @@ function SortingFilter() {
         className="cursor-pointer text-xl"
         onClick={() => handleSortTypeChange()}
       />
-      <span className="text-gray-middle">Sort by</span>
+      <span className="text-gray">Sort by</span>
       <select
         name="artwork-filter"
         id="artwork-filter"

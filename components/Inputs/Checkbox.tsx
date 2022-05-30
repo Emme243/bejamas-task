@@ -10,20 +10,23 @@ interface Props {
 
 function Checkbox({ children, onChange, isChecked, value }: Props) {
   return (
-    <div className="relative flex items-center space-x-3">
+    <>
       <input
+        id={value}
         type="checkbox"
-        className="absolute top-0 left-0 h-full w-full opacity-0"
+        className="hidden"
         value={value}
         onChange={onChange}
         checked={isChecked}
       />
-      <Icon
-        icon={`carbon:checkbox${isChecked ? '-checked' : ''}`}
-        className="cursor-pointer text-2xl"
-      />
-      {children}
-    </div>
+      <label htmlFor={value} className="flex items-center space-x-3">
+        <Icon
+          icon={`carbon:checkbox${isChecked ? '-checked' : ''}`}
+          className="cursor-pointer text-2xl"
+        />
+        {children}
+      </label>
+    </>
   );
 }
 
