@@ -11,9 +11,9 @@ function FeaturedArtworkSection() {
   const { data, loading, error } = useQuery(FEATURED_ARTWORK_QUERY);
 
   const { isScreenLarge } = useTailwindBreakpoints();
-  const [imageCoverHeight, setImageCoverHeight] = useState(600);
+  const [coverImageHeight, setCoverImageHeight] = useState(600);
   useEffect(() => {
-    setImageCoverHeight(isScreenLarge ? 400 : 600);
+    setCoverImageHeight(isScreenLarge ? 400 : 600);
   }, [isScreenLarge]);
 
   if (loading) return <FeaturedArtworkLoader />;
@@ -42,7 +42,7 @@ function FeaturedArtworkSection() {
           <Image
             alt={name}
             className="object-cover"
-            height={imageCoverHeight}
+            height={coverImageHeight}
             layout="responsive"
             priority
             src={landscape}
