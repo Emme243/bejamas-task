@@ -3,11 +3,11 @@ import ContentLoader from 'react-content-loader';
 
 const FeaturedArtworkLoader = () => (
   <ContentLoader
-    uniqueKey="featured-artwork-loader"
-    className="w-full"
-    viewBox="0 0 388 210"
     backgroundColor="#f0f0f0"
+    className="w-full"
     foregroundColor="#dedede"
+    uniqueKey="featured-artwork-loader"
+    viewBox="0 0 400 210"
   >
     <rect x="1" y="150" rx="4" ry="4" width="271" height="9" />
     <rect x="2" y="165" rx="3" ry="3" width="119" height="6" />

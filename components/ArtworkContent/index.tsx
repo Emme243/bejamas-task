@@ -5,6 +5,7 @@ import ArtworkCard from './ArtworkCard';
 import { useAppSelector } from '../../hooks/useAppStore';
 import PaginationFilter from '../ArtworkFilter/PaginationFilter';
 import useQueryRoute from '../../hooks/useQueryRoute';
+import ArtworksLoader from '../Loaders/ArtowrksLoader';
 
 const ARTWORKS_PER_PAGE = 6;
 
@@ -28,7 +29,12 @@ function ArtworkContent({ className }: { className?: string }) {
     },
   });
 
-  if (loading) return <div className="w-full">Loading Artworks...</div>;
+  if (loading)
+    return (
+      <div className={`${className}`}>
+        <ArtworksLoader />
+      </div>
+    );
   if (error) return <div className="w-full">Ups! {error.message}</div>;
 
   const artworks = data.displayedArtworks.artworks as Artwork[];
