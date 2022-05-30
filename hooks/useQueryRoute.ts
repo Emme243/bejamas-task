@@ -38,9 +38,16 @@ function useQueryRoute() {
     setQueryParamsToUrl(query);
   }
 
+  function setPriceRangeToUrl(priceRange: number[]) {
+    const query: Query = { priceRange: priceRange.join(',') };
+    if (priceRange.length === 0) delete query.priceRange;
+    setQueryParamsToUrl(query);
+  }
+
   return {
     setCategoriesToUrl,
     setCurrentPageToUrl,
+    setPriceRangeToUrl,
     categories,
     currentPage,
     priceRange,

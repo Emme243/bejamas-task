@@ -1,13 +1,12 @@
 import { useQuery } from '@apollo/client';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import PRICE_RANGE_QUERY from '../../graphql/queries/priceRangeQuery';
 import Checkbox from '../Inputs/Checkbox';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks/useAppStore';
-import {
-  emptyPriceRangeFilterValues,
-  setPriceRangeValues,
-} from '../../store/priceRangeFilterState';
+import { useRouter } from 'next/router';
+import { setPriceRange } from '../../store/artworkFilterSlice';
+import useQueryRoute from '../../hooks/useQueryRoute';
 
 interface ArtworkPriceRange {
   minPrice: number;
@@ -17,13 +16,21 @@ interface ArtworkPriceRange {
 const DIVISION_PRICE = 400;
 
 function PriceRangeFilter() {
-  const { data, loading, error } = useQuery(PRICE_RANGE_QUERY);
+  const router = useRouter();
   const dispatch = useDispatch();
-  const priceRangeFilterValues = useAppSelector(state => state.priceRangeFilter.values);
+  const { data, loading, error } = useQuery(PRICE_RANGE_QUERY);
+  const { setPriceRangeToUrl } = useQueryRoute();
+
+  const priceRangeFilter = useAppSelector(state => state.artworkFilter.priceRange);
+  useEffect(() => {
+    const priceRangeQuery = router.query.priceRange as string | undefined;
+    const priceRange = priceRangeQuery ? priceRangeQuery.split(',').map(Number) : [];
+    dispatch(setPriceRange(priceRange));
+  }, [dispatch, router.query.priceRange]);
   const handlePriceFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { checked, value } = e.target;
-    if (checked) dispatch(setPriceRangeValues(value.split(',').map(Number)));
-    else dispatch(emptyPriceRangeFilterValues());
+    const { checked: isChecked, value: priceRangeValue } = e.target;
+    const priceRange = isChecked ? priceRangeValue.split(',').map(Number) : [];
+    setPriceRangeToUrl(priceRange);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -32,7 +39,7 @@ function PriceRangeFilter() {
   const { maxPrice } = data.artworkPriceRange as ArtworkPriceRange;
   const numberOfCheckboxes = Math.floor(maxPrice / DIVISION_PRICE) + 1;
   const isCheckboxChecked = (fromPrice: number, toPrice: number) =>
-    priceRangeFilterValues.includes(fromPrice) && priceRangeFilterValues.includes(toPrice);
+    priceRangeFilter.includes(fromPrice) && priceRangeFilter.includes(toPrice);
   return (
     <>
       <h3 className="font-bold">Price Range</h3>

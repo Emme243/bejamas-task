@@ -12,14 +12,13 @@ function CategoryFilter() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { setCategoriesToUrl } = useQueryRoute();
-  const categoryFilter = useAppSelector(state => state.artworkFilter.categories);
 
+  const categoryFilter = useAppSelector(state => state.artworkFilter.categories);
   useEffect(() => {
     const categoryQuery = router.query.categories as string | undefined;
     const categories = categoryQuery ? categoryQuery.split(',') : [];
     dispatch(setCategories(categories));
   }, [dispatch, router.query.categories]);
-
   const handleCategoryFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value: category } = e.target;
     const categories = categoryFilter.includes(category)

@@ -15,7 +15,7 @@ function ArtworkContainer({ className }: { className?: string }) {
   const dispatch = useAppDispatch();
   const { categories, priceRange, sortBy, sortType, setCurrentPageToUrl } = useQueryRoute();
 
-  const currentPage = useAppSelector(state => state.artworkFilter.currentPage);
+  const currentPageFilter = useAppSelector(state => state.artworkFilter.currentPage);
   useEffect(() => {
     const currentPageQuery = router.query.currentPage as string | undefined;
     const currentPage = currentPageQuery ? parseInt(currentPageQuery) : 1;
@@ -30,7 +30,7 @@ function ArtworkContainer({ className }: { className?: string }) {
     variables: {
       sort: { by: sortBy, type: sortType },
       limit: ARTWORKS_PER_PAGE,
-      page: currentPage,
+      page: currentPageFilter,
       filter: filterInput.length > 0 ? filterInput : null,
     },
   });
@@ -55,7 +55,7 @@ function ArtworkContainer({ className }: { className?: string }) {
       <div className="mt-10 text-center">
         <Pagination
           totalPages={totalPages}
-          currentPage={currentPage}
+          currentPage={currentPageFilter}
           onPageChange={setCurrentPageToUrl}
         />
       </div>

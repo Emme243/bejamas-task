@@ -26,8 +26,11 @@ export const artworkFilterSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
+    setPriceRange: (state, action: PayloadAction<number[]>) => {
+      state.priceRange = action.payload;
+    },
   },
 });
 
-export const { setCategories, setCurrentPage } = artworkFilterSlice.actions;
+export const { setCategories, setCurrentPage, setPriceRange } = artworkFilterSlice.actions;
 export default artworkFilterSlice.reducer;
