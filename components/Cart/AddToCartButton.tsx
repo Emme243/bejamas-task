@@ -9,7 +9,7 @@ interface Props {
 
 function AddToCartButton({ artwork, className }: Props) {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector(state => state.cart.artworks);
+  const artworksInCart = useAppSelector(state => state.cart.artworks);
 
   const handleClick = () => {
     const cartDropdownButton = document.querySelector<HTMLButtonElement>(
@@ -21,7 +21,9 @@ function AddToCartButton({ artwork, className }: Props) {
 
   return (
     <button className={className} onClick={() => handleClick()}>
-      {cart.find(item => item.id === artwork.id) ? 'Added ✅' : 'Add to cart'}
+      {artworksInCart.find(artworkInCart => artworkInCart.id === artwork.id)
+        ? 'Added ✅'
+        : 'Add to cart'}
     </button>
   );
 }

@@ -24,15 +24,15 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Artwork>) => {
       if (state.artworks.find(artwork => artwork.id === action.payload.id)) return;
       state.artworks.push(action.payload);
-      localStorage.setItem(CART_NAME, JSON.stringify(state.artworks));
+      setCartInStorage(state.artworks);
     },
     removeFromCart: (state, action: PayloadAction<Artwork>) => {
       state.artworks = state.artworks.filter(artwork => artwork.id !== action.payload.id);
-      localStorage.setItem(CART_NAME, JSON.stringify(state.artworks));
+      setCartInStorage(state.artworks);
     },
     emptyCart: state => {
       state.artworks = [];
-      localStorage.setItem(CART_NAME, JSON.stringify(state.artworks));
+      setCartInStorage(state.artworks);
     },
   },
 });

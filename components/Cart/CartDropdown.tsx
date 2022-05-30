@@ -11,6 +11,13 @@ function CartDropdown() {
   useEffect(() => {
     dispatch(getCartFromLocalStorage());
   }, [dispatch]);
+  const handleClearCart = () => {
+    const cartDropdownButton = document.querySelector<HTMLButtonElement>(
+      '[id^="headlessui-menu-button"]'
+    );
+    cartDropdownButton?.click();
+    dispatch(emptyCart());
+  };
 
   return (
     <Menu>
@@ -46,7 +53,7 @@ function CartDropdown() {
           <div className="sticky bottom-0 border-t border-gray-lightest bg-white">
             <button
               className="my-5 w-full border-3 border-black py-3 text-center uppercase"
-              onClick={() => dispatch(emptyCart())}
+              onClick={handleClearCart}
             >
               Clear
             </button>
