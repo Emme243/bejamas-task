@@ -14,7 +14,7 @@ function ArtworkSection() {
   return (
     <>
       {/*FILTERING AND SORTING OPTIONS*/}
-      <div className="flex items-center justify-between bg-white py-3">
+      <div className="sticky top-20 left-0 z-20 flex items-center justify-between bg-white py-3">
         <div className="space-x-2 text-xl">
           <span className="font-bold">Photography</span>
           <span className="font-semibold">/</span>
@@ -26,7 +26,7 @@ function ArtworkSection() {
         >
           <Icon icon="system-uicons:filtering" />
         </div>
-        <div className="hidden items-center space-x-3 text-lg lg:flex">
+        <div className="hidden lg:block">
           <SortingFilter />
         </div>
       </div>

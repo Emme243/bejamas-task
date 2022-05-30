@@ -35,7 +35,7 @@ function SortingFilter() {
   const iconName = `bi:sort-${iconBy}-down${iconType}`;
 
   return (
-    <>
+    <div className="flex items-center space-x-3 text-lg">
       <Icon
         icon={iconName}
         className="cursor-pointer text-xl"
@@ -51,7 +51,7 @@ function SortingFilter() {
         <option value="name">Name</option>
         <option value="price">Price</option>
       </select>
-    </>
+    </div>
   );
 }
 
