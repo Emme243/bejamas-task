@@ -5,9 +5,11 @@ import ArtworkFilter from './index';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
 import { closeModalFilter } from '../../store/artworkFilterSlice';
+import useQueryRoute from '../../hooks/useQueryRoute';
 
 function ArtworkFilterModal() {
   const dispatch = useAppDispatch();
+  const { resetQueryParams } = useQueryRoute();
 
   const isFilterModalOpen = useAppSelector(state => state.artworkFilter.isModalOpen);
   useEffect(() => {
@@ -18,10 +20,6 @@ function ArtworkFilterModal() {
   useEffect(() => {
     dispatch(closeModalFilter());
   }, [dispatch, isScreenLarge]);
-
-  const clearArtworkFilters = () => {
-    // TODO: clear filters for price range and category
-  };
 
   return (
     <Transition className="fixed top-0 left-0 z-30 h-screen w-screen" show={isFilterModalOpen}>
@@ -62,7 +60,7 @@ function ArtworkFilterModal() {
         <div className="sticky bottom-0 left-0 flex w-full space-x-3 bg-white px-6 py-5 drop-shadow-[3px_0px_3px_rgba(0,0,0,0.25)]">
           <button
             className="w-full border-2 border-black bg-white py-1 text-xl font-semibold uppercase text-black"
-            onClick={clearArtworkFilters}
+            onClick={resetQueryParams}
           >
             Clear
           </button>

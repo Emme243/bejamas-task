@@ -4,10 +4,12 @@ import { Artwork } from '../../models/Artwork';
 import ArtworkCard from './ArtworkCard';
 import { useAppSelector } from '../../hooks/useAppStore';
 import PaginationFilter from '../ArtworkFilter/PaginationFilter';
+import useQueryRoute from '../../hooks/useQueryRoute';
 
 const ARTWORKS_PER_PAGE = 6;
 
 function ArtworkContent({ className }: { className?: string }) {
+  const { resetQueryParams } = useQueryRoute();
   const { categories, currentPage, priceRange, sortBy, sortType } = useAppSelector(
     state => state.artworkFilter
   );
@@ -35,7 +37,10 @@ function ArtworkContent({ className }: { className?: string }) {
       <div className="w-full text-center">
         <h3 className="text-xl font-semibold">No artworks found 🙁</h3>
         <p className="mt-2 text-lg text-gray-middle">
-          Try changing the filter or <span className="cursor-pointer underline">reset them</span>
+          Try changing the filter or{' '}
+          <span className="cursor-pointer underline" onClick={resetQueryParams}>
+            reset them
+          </span>
         </p>
       </div>
     );

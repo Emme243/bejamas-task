@@ -21,6 +21,10 @@ function useQueryRoute() {
     router.push(`/?${queryString}`, undefined, { shallow: true });
   }
 
+  function resetQueryParams() {
+    router.push('/?', undefined, { shallow: true });
+  }
+
   function setCategoriesToUrl(categories: string[]) {
     const query: Query = { categories: categories.join(',') };
     setQueryParamsToUrl(query, 'categories', categories.length === 0);
@@ -52,6 +56,7 @@ function useQueryRoute() {
     setPriceRangeToUrl,
     setSortByToUrl,
     setSortTypeToUrl,
+    resetQueryParams,
   };
 }
 
