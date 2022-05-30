@@ -5,9 +5,11 @@ import ArtworkFilterModal from '../ArtworkFilter/ArtworkFilterModal';
 import SortingFilter from '../ArtworkFilter/SortingFilter';
 import ArtworkContent from '../ArtworkContent';
 import { openModalFilter } from '../../store/artworkFilterSlice';
+import useQueryRoute from '../../hooks/useQueryRoute';
 
 function ArtworkSection() {
   const dispatch = useDispatch();
+  const { resetQueryParams } = useQueryRoute();
 
   return (
     <>
@@ -33,7 +35,16 @@ function ArtworkSection() {
         <ArtworkFilterModal />
       </div>
       <div className="lg:mt-8 lg:flex lg:justify-between lg:space-x-6">
-        <ArtworkFilter className="hidden flex-[0_0_25%] lg:block" />
+        <div className="hidden flex-[0_0_25%] lg:block">
+          <ArtworkFilter className="w-full" />
+          <hr className="my-6 h-[1px] border-none bg-gray-lightest " />
+          <button
+            className="w-1/2 border border-black py-1 text-xl font-semibold"
+            onClick={resetQueryParams}
+          >
+            Clear
+          </button>
+        </div>
         <ArtworkContent className="mt-3 flex-grow lg:mt-0" />
       </div>
     </>
