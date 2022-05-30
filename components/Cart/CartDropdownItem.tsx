@@ -11,6 +11,7 @@ interface Props {
 
 function CartDropdownItem({ artwork }: Props) {
   const dispatch = useAppDispatch();
+
   const {
     name,
     price,
@@ -18,7 +19,6 @@ function CartDropdownItem({ artwork }: Props) {
       src: { landscape },
     },
   } = artwork;
-
   return (
     <Menu.Item as="div" className="border-b-2 border-gray-lightest py-5">
       <div

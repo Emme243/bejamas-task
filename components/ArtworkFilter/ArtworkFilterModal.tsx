@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
 import ArtworkFilter from './index';
-import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
+import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
 import { closeModalFilter } from '../../store/artworkFilterSlice';
 import useQueryRoute from '../../hooks/useQueryRoute';

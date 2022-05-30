@@ -7,9 +7,13 @@ import PaginationFilter from '../ArtworkFilter/PaginationFilter';
 import useQueryRoute from '../../hooks/useQueryRoute';
 import ArtworksLoader from '../Loaders/ArtowrksLoader';
 
+interface Props {
+  className?: string;
+}
+
 const ARTWORKS_PER_PAGE = 6;
 
-function ArtworkContent({ className }: { className?: string }) {
+function ArtworkContent({ className }: Props) {
   const { resetQueryParams } = useQueryRoute();
   const { categories, currentPage, priceRange, sortBy, sortType } = useAppSelector(
     state => state.artworkFilter

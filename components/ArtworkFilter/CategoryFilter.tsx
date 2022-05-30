@@ -8,10 +8,10 @@ import useQueryRoute from '../../hooks/useQueryRoute';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 
 function CategoryFilter() {
-  const { data, loading, error } = useQuery(CATEGORY_QUERY);
-  const dispatch = useAppDispatch();
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { setCategoriesToUrl } = useQueryRoute();
+  const { data, loading, error } = useQuery(CATEGORY_QUERY);
 
   const categoryFilter = useAppSelector(state => state.artworkFilter.categories);
   useEffect(() => {

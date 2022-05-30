@@ -17,7 +17,7 @@ function FeaturedArtworkSection() {
   }, [isScreenLarge]);
 
   if (loading) return <FeaturedArtworkLoader />;
-  if (error) return <p>Oh no... {error.message}</p>;
+  if (error) return <p>Error getting the featured artwork :(</p>;
 
   const featuredArtwork = data.featuredArtwork as Artwork;
   const {
@@ -35,7 +35,7 @@ function FeaturedArtworkSection() {
 
   return (
     <>
-      {/*BIG ARTWORK*/}
+      {/*FEATURED ARTWORK COVER*/}
       <div className="space-y-5 lg:grid lg:grid-cols-featured-artwork lg:grid-rows-featured-artwork lg:items-center lg:gap-y-5 lg:gap-x-4 lg:space-y-0 lg:grid-areas-featured-artwork">
         <span className="text-2xl font-bold lg:grid-in-name">{name}</span>
         <div className="relative lg:grid-in-image">

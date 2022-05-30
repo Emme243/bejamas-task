@@ -1,7 +1,11 @@
 import CategoryFilter from './CategoryFilter';
 import PriceRangeFilter from './PriceRangeFilter';
 
-function ArtworkFilter({ className }: { className?: string }) {
+interface Props {
+  className?: string;
+}
+
+function ArtworkFilter({ className }: Props) {
   return (
     <div className={`text-xl ${className}`}>
       <CategoryFilter />

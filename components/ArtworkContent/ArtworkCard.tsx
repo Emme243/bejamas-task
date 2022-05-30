@@ -2,7 +2,11 @@ import { Artwork } from '../../models/Artwork';
 import Image from 'next/image';
 import AddToCartButton from '../Cart/AddToCartButton';
 
-function ArtworkCard({ artwork }: { artwork: Artwork }) {
+interface Props {
+  artwork: Artwork;
+}
+
+function ArtworkCard({ artwork }: Props) {
   const {
     category,
     details: {

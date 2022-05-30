@@ -18,8 +18,8 @@ const DIVISION_PRICE = 400;
 function PriceRangeFilter() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { data, loading, error } = useQuery(PRICE_RANGE_QUERY);
   const { setPriceRangeToUrl } = useQueryRoute();
+  const { data, loading, error } = useQuery(PRICE_RANGE_QUERY);
 
   const priceRangeFilter = useAppSelector(state => state.artworkFilter.priceRange);
   useEffect(() => {
@@ -33,8 +33,8 @@ function PriceRangeFilter() {
     setPriceRangeToUrl(priceRange);
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <p>Loading price range...</p>;
+  if (error) return <p>Error getting price range :(</p>;
 
   const { maxPrice } = data.artworkPriceRange as ArtworkPriceRange;
   const numberOfCheckboxes = Math.floor(maxPrice / DIVISION_PRICE) + 1;

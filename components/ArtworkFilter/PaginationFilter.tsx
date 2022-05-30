@@ -11,8 +11,8 @@ interface Props {
 }
 
 function PaginationFilter({ totalOfArtworks, artworksPerPage }: Props) {
-  const dispatch = useAppDispatch();
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { setCurrentPageToUrl } = useQueryRoute();
 
   const currentPageFilter = useAppSelector(state => state.artworkFilter.currentPage);
@@ -22,16 +22,14 @@ function PaginationFilter({ totalOfArtworks, artworksPerPage }: Props) {
     dispatch(setCurrentPage(currentPage));
   }, [dispatch, router.query.currentPage]);
 
-  const totalPages = Math.ceil(totalOfArtworks / artworksPerPage);
+  const totalOfPages = Math.ceil(totalOfArtworks / artworksPerPage);
 
   return (
-    <>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPageFilter}
-        onPageChange={setCurrentPageToUrl}
-      />
-    </>
+    <Pagination
+      totalPages={totalOfPages}
+      currentPage={currentPageFilter}
+      handlePageChange={setCurrentPageToUrl}
+    />
   );
 }
 
