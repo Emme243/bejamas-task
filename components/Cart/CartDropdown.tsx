@@ -32,21 +32,25 @@ function CartDropdown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute top-20 right-4 z-10 ml-10 max-h-[50vh] w-full max-w-sm overflow-y-auto border-4 border-gray-lightest bg-white px-5 sm:right-0">
+        <Menu.Items className="absolute top-20 right-4 z-20 ml-10 max-h-[50vh] w-full max-w-sm overflow-y-auto border-4 border-gray-lightest bg-white px-5 sm:right-0">
           {cart.length > 0 ? (
-            cart.map(artwork => <CartDropdownItem key={artwork.id} artwork={artwork} />)
+            [...cart]
+              .reverse()
+              .map(artwork => <CartDropdownItem key={artwork.id} artwork={artwork} />)
           ) : (
             <div className="text-gray-500 mt-5 text-center">
               <p>Your cart is empty</p>
             </div>
           )}
 
-          <button
-            className="my-5 w-full border-3 border-black py-3 text-center uppercase"
-            onClick={() => dispatch(emptyCart())}
-          >
-            Clear
-          </button>
+          <div className="sticky bottom-0 border-t border-gray-lightest bg-white">
+            <button
+              className="my-5 w-full border-3 border-black py-3 text-center uppercase"
+              onClick={() => dispatch(emptyCart())}
+            >
+              Clear
+            </button>
+          </div>
         </Menu.Items>
       </Transition>
     </Menu>

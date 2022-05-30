@@ -12,7 +12,7 @@ function ArtworkSection() {
   return (
     <>
       {/*FILTERING AND SORTING OPTIONS*/}
-      <div className="sticky top-0 z-20 flex items-center justify-between bg-white py-3">
+      <div className="flex items-center justify-between bg-white py-3">
         <div className="space-x-2 text-xl">
           <span className="font-bold">Photography</span>
           <span className="font-semibold">/</span>
@@ -34,7 +34,7 @@ function ArtworkSection() {
       </div>
       <div className="lg:mt-8 lg:flex lg:justify-between lg:space-x-6">
         <ArtworkFilter className="hidden flex-[0_0_25%] lg:block" />
-        <ArtworkContent className="mt-3 lg:mt-0" />
+        <ArtworkContent className="mt-3 flex-grow lg:mt-0" />
       </div>
     </>
   );

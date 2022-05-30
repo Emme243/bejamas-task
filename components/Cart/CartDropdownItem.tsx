@@ -29,7 +29,7 @@ function CartDropdownItem({ artwork }: Props) {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex w-3/4 flex-col pr-4">
-          <span className="font-bold">{name}</span>
+          <span className="font-bold line-clamp-2">{name}</span>
           <span className="text-xl text-gray">${price}</span>
         </div>
         <Image className="object-cover" width={150} height={100} src={landscape} alt={name} />
