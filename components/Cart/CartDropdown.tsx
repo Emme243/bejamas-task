@@ -21,7 +21,7 @@ function CartDropdown() {
 
   return (
     <Menu>
-      <Menu.Button className="relative">
+      <Menu.Button className="relative" aria-label="Open your cart">
         <Icon icon="ant-design:shopping-cart-outlined" className="text-4xl" />
         {/*Number of items badge*/}
         {cart.length > 0 && (

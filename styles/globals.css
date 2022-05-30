@@ -21,23 +21,27 @@
     font-family: 'Archivo';
     font-weight: 400;
     src: url('../public/fonts/Archivo-Regular.ttf') format('woff');
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'Archivo';
     font-weight: 500;
     src: url('../public/fonts/Archivo-Medium.ttf') format('woff');
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'Archivo';
     font-weight: 600;
     src: url('../public/fonts/Archivo-SemiBold.ttf') format('woff');
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'Archivo';
     font-weight: 700;
     src: url('../public/fonts/Archivo-Bold.ttf') format('woff');
+    font-display: swap;
   }
 }

@@ -18,7 +18,7 @@ function ArtworkSection() {
         <div className="space-x-2 text-xl">
           <span className="font-bold">Photography</span>
           <span className="font-semibold">/</span>
-          <span className="text-gray-middle">Premium Photos</span>
+          <span className="text-gray">Premium Photos</span>
         </div>
         <div
           className="cursor-pointer rounded-md border border-black text-2xl text-black lg:hidden"

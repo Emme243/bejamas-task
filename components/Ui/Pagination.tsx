@@ -15,6 +15,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: Props) {
         <button
           className={`${arrowButtonClasses} ${buttonSizeClasses}`}
           onClick={() => onPageChange(currentPage - 1)}
+          aria-label="Go to previous page"
         >
           <Icon icon="akar-icons:chevron-left"></Icon>
         </button>
@@ -39,6 +40,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: Props) {
         <button
           className={`${arrowButtonClasses} ${buttonSizeClasses}`}
           onClick={() => onPageChange(currentPage + 1)}
+          aria-label="Go to next page"
         >
           <Icon icon="akar-icons:chevron-right"></Icon>
         </button>
