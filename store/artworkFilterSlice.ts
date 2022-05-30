@@ -23,8 +23,11 @@ export const artworkFilterSlice = createSlice({
     setCategories: (state, action: PayloadAction<string[]>) => {
       state.categories = action.payload;
     },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
   },
 });
 
-export const { setCategories } = artworkFilterSlice.actions;
+export const { setCategories, setCurrentPage } = artworkFilterSlice.actions;
 export default artworkFilterSlice.reducer;

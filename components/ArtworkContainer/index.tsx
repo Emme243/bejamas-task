@@ -4,11 +4,23 @@ import { Artwork } from '../../models/Artwork';
 import ArtworkCard from './ArtworkCard';
 import Pagination from '../Ui/Pagination';
 import useQueryRoute from '../../hooks/useQueryRoute';
+import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { setCurrentPage } from '../../store/artworkFilterSlice';
 
 const ARTWORKS_PER_PAGE = 6;
 function ArtworkContainer({ className }: { className?: string }) {
-  const { categories, currentPage, priceRange, sortBy, sortType, setCurrentPageToUrl } =
-    useQueryRoute();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { categories, priceRange, sortBy, sortType, setCurrentPageToUrl } = useQueryRoute();
+
+  const currentPage = useAppSelector(state => state.artworkFilter.currentPage);
+  useEffect(() => {
+    const currentPageQuery = router.query.currentPage as string | undefined;
+    const currentPage = currentPageQuery ? parseInt(currentPageQuery) : 1;
+    dispatch(setCurrentPage(currentPage));
+  }, [dispatch, router.query.currentPage]);
 
   const filterInput = [];
   if (categories.length > 0) filterInput.push({ key: 'category', type: 'IN', values: categories });

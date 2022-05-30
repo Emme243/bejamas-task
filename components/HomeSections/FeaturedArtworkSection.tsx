@@ -5,12 +5,9 @@ import { Artwork } from '../../models/Artwork';
 import FEATURED_ARTWORK_QUERY from '../../graphql/queries/featuredArtworkQuery';
 import FeaturedArtworkLoader from '../Loaders/FeaturedArtworkLoader';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
-import { useAppDispatch } from '../../hooks/useAppStore';
-import { addToCart } from '../../store/cartSlice';
 import AddToCartButton from '../Cart/AddToCartButton';
 
 function FeaturedArtworkSection() {
-  const dispatch = useAppDispatch();
   const { data, loading, error } = useQuery(FEATURED_ARTWORK_QUERY);
 
   const { isScreenLarge } = useTailwindBreakpoints();

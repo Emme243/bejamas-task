@@ -1,11 +1,8 @@
 import { Artwork } from '../../models/Artwork';
 import Image from 'next/image';
-import { useAppDispatch } from '../../hooks/useAppStore';
-import { addToCart } from '../../store/cartSlice';
 import AddToCartButton from '../Cart/AddToCartButton';
 
 function ArtworkCard({ artwork }: { artwork: Artwork }) {
-  const dispatch = useAppDispatch();
   const {
     category,
     details: {
