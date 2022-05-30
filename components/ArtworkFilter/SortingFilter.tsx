@@ -9,7 +9,7 @@ import useQueryRoute from '../../hooks/useQueryRoute';
 function SortingFilter() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { setSortingToUrl } = useQueryRoute();
+  const { setSortTypeToUrl, setSortByToUrl } = useQueryRoute();
 
   const sortBy = useAppSelector(state => state.artworkFilter.sortBy);
   const sortType = useAppSelector(state => state.artworkFilter.sortType);
@@ -23,11 +23,11 @@ function SortingFilter() {
   }, [dispatch, router.query.sortBy, router.query.sortType]);
   const handleSortByChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newSortBy = e.target.value;
-    setSortingToUrl(newSortBy, sortType);
+    setSortByToUrl(newSortBy);
   };
   const handleSortTypeChange = () => {
     const newSortType = sortType === 'ASC' ? 'DESC' : 'ASC';
-    setSortingToUrl(sortBy, newSortType);
+    setSortTypeToUrl(newSortType);
   };
 
   const iconBy = sortBy === 'name' ? 'alpha' : 'numeric';

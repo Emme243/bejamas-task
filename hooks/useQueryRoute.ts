@@ -12,40 +12,46 @@ interface Query {
 function useQueryRoute() {
   const router = useRouter();
 
-  function setQueryParamsToUrl(query: Query): void {
-    const queryString = Object.entries(query)
+  function setQueryParamsToUrl(query: Query, queryName: keyof Query, shouldRemove = false): void {
+    const newQuery: Query = { ...router.query, ...query };
+    if (shouldRemove) delete newQuery[queryName];
+    const queryString = Object.entries(newQuery)
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
     router.push(`/?${queryString}`, undefined, { shallow: true });
   }
 
   function setCategoriesToUrl(categories: string[]) {
-    const newQuery: Query = { ...router.query, categories: categories.join(',') };
-    if (categories.length === 0) delete newQuery.categories;
-    setQueryParamsToUrl(newQuery);
+    const query: Query = { categories: categories.join(',') };
+    setQueryParamsToUrl(query, 'categories', categories.length === 0);
   }
 
   function setCurrentPageToUrl(page: number) {
-    const newQuery: Query = { ...router.query, currentPage: page.toString() };
-    setQueryParamsToUrl(newQuery);
+    const query: Query = { currentPage: page.toString() };
+    setQueryParamsToUrl(query, 'currentPage');
   }
 
   function setPriceRangeToUrl(priceRange: number[]) {
-    const newQuery: Query = { ...router.query, priceRange: priceRange.join(',') };
-    if (priceRange.length === 0) delete newQuery.priceRange;
-    setQueryParamsToUrl(newQuery);
+    const query: Query = { priceRange: priceRange.join(',') };
+    setQueryParamsToUrl(query, 'priceRange', priceRange.length === 0);
   }
 
-  function setSortingToUrl(sortBy: string, sortType: SortType) {
-    const query: Query = { ...router.query, sortBy, sortType };
-    setQueryParamsToUrl(query);
+  function setSortByToUrl(sortBy: string) {
+    const query: Query = { sortBy };
+    setQueryParamsToUrl(query, 'sortBy');
+  }
+
+  function setSortTypeToUrl(sortType: SortType) {
+    const query: Query = { sortType };
+    setQueryParamsToUrl(query, 'sortType');
   }
 
   return {
     setCategoriesToUrl,
     setCurrentPageToUrl,
     setPriceRangeToUrl,
-    setSortingToUrl,
+    setSortByToUrl,
+    setSortTypeToUrl,
   };
 }
 
