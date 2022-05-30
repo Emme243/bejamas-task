@@ -2,8 +2,8 @@ import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
 import ArtworkFilter from '../ArtworkFilter';
 import ArtworkFilterModal from '../ArtworkFilter/ArtworkFilterModal';
-import ArtworkSorting from '../ArtworkFilter/ArtworkSorting';
-import ArtworkContainer from '../ArtworkContainer';
+import SortingFilter from '../ArtworkFilter/SortingFilter';
+import ArtworkContent from '../ArtworkContent';
 import { openModalFilter } from '../../store/artworkFilterSlice';
 
 function ArtworkSection() {
@@ -25,7 +25,7 @@ function ArtworkSection() {
           <Icon icon="system-uicons:filtering" />
         </div>
         <div className="hidden items-center space-x-3 text-lg lg:flex">
-          <ArtworkSorting />
+          <SortingFilter />
         </div>
       </div>
       {/*DISPLAYED ARTWORKS*/}
@@ -34,7 +34,7 @@ function ArtworkSection() {
       </div>
       <div className="lg:mt-8 lg:flex lg:justify-between lg:space-x-6">
         <ArtworkFilter className="hidden flex-[0_0_25%] lg:block" />
-        <ArtworkContainer className="mt-3 lg:mt-0" />
+        <ArtworkContent className="mt-3 lg:mt-0" />
       </div>
     </>
   );

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { SortType } from '../store/artworkFilterSlice';
 
@@ -12,11 +11,6 @@ interface Query {
 
 function useQueryRoute() {
   const router = useRouter();
-  const [categories] = useState<string[]>([]);
-  const [currentPage] = useState<number>(1);
-  const [priceRange] = useState<number[]>([]);
-  const [sortBy] = useState<string>('name');
-  const [sortType] = useState<'ASC' | 'DESC'>('DESC');
 
   function setQueryParamsToUrl(query: Query): void {
     const newQuery = { ...router.query, ...query };
@@ -24,7 +18,6 @@ function useQueryRoute() {
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
     router.push(`/?${queryString}`, undefined, { shallow: true });
-    console.log(router.query);
   }
 
   function setCategoriesToUrl(categories: string[]) {
@@ -55,11 +48,6 @@ function useQueryRoute() {
     setCurrentPageToUrl,
     setPriceRangeToUrl,
     setSortingToUrl,
-    categories,
-    currentPage,
-    priceRange,
-    sortBy,
-    sortType,
   };
 }
 

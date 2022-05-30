@@ -6,7 +6,7 @@ import { setSortBy, setSortType, SortType } from '../../store/artworkFilterSlice
 import { useRouter } from 'next/router';
 import useQueryRoute from '../../hooks/useQueryRoute';
 
-function ArtworkSorting() {
+function SortingFilter() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { setSortingToUrl } = useQueryRoute();
@@ -55,4 +55,4 @@ function ArtworkSorting() {
   );
 }
 
-export default ArtworkSorting;
+export default SortingFilter;
