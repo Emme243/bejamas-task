@@ -4,30 +4,27 @@ import { Icon } from '@iconify/react';
 import ArtworkFilter from './index';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import useTailwindBreakpoints from '../../hooks/useTailwindBreakpoints';
-import { closeArtworkFilterModal } from '../../store/artworkFilterModalSlice';
-import { emptyPriceRangeFilterValues } from '../../store/priceRangeFilterState';
-import { emptyCategoryFilter } from '../../store/categoryFilterSlice';
+import { closeModalFilter } from '../../store/artworkFilterSlice';
 
 function ArtworkFilterModal() {
   const dispatch = useAppDispatch();
 
-  const isFilterOpen = useAppSelector(state => state.artworkFilterModal.isOpen);
+  const isFilterModalOpen = useAppSelector(state => state.artworkFilter.isModalOpen);
   useEffect(() => {
-    document.body.classList.toggle('overflow-hidden', isFilterOpen);
-  }, [isFilterOpen]);
+    document.body.classList.toggle('overflow-hidden', isFilterModalOpen);
+  }, [isFilterModalOpen]);
 
   const { isScreenLarge } = useTailwindBreakpoints();
   useEffect(() => {
-    dispatch(closeArtworkFilterModal());
-  }, [isScreenLarge]);
+    dispatch(closeModalFilter());
+  }, [dispatch, isScreenLarge]);
 
   const clearArtworkFilters = () => {
-    dispatch(emptyPriceRangeFilterValues());
-    dispatch(emptyCategoryFilter());
+    // TODO: clear filters for price range and category
   };
 
   return (
-    <Transition className="fixed top-0 left-0 z-30 h-screen w-screen" show={isFilterOpen}>
+    <Transition className="fixed top-0 left-0 z-30 h-screen w-screen" show={isFilterModalOpen}>
       <Transition.Child
         className="h-full w-full bg-black/20"
         enter="ease-out duration-300"
@@ -36,7 +33,7 @@ function ArtworkFilterModal() {
         leave="ease-in duration-200"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
-        onClick={() => dispatch(closeArtworkFilterModal())}
+        onClick={() => dispatch(closeModalFilter())}
       />
 
       <Transition.Child
@@ -53,7 +50,7 @@ function ArtworkFilterModal() {
           <Icon
             className="cursor-pointer text-2xl"
             icon="emojione-monotone:heavy-multiplication-x"
-            onClick={() => dispatch(closeArtworkFilterModal())}
+            onClick={() => dispatch(closeModalFilter())}
           />
         </div>
         <hr className="my-4 h-1 border-0 bg-gray-lightest" />

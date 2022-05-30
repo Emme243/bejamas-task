@@ -8,6 +8,7 @@ interface ArtworkFilterStore {
   priceRange: number[];
   sortBy: string;
   sortType: SortType;
+  isModalOpen: boolean;
 }
 
 const initialState: ArtworkFilterStore = {
@@ -16,6 +17,7 @@ const initialState: ArtworkFilterStore = {
   priceRange: [],
   sortBy: 'name',
   sortType: 'ASC',
+  isModalOpen: false,
 };
 
 export const artworkFilterSlice = createSlice({
@@ -37,9 +39,22 @@ export const artworkFilterSlice = createSlice({
     setSortType: (state, action: PayloadAction<SortType>) => {
       state.sortType = action.payload;
     },
+    openModalFilter: state => {
+      state.isModalOpen = true;
+    },
+    closeModalFilter: state => {
+      state.isModalOpen = false;
+    },
   },
 });
 
-export const { setCategories, setCurrentPage, setPriceRange, setSortBy, setSortType } =
-  artworkFilterSlice.actions;
+export const {
+  setCategories,
+  setCurrentPage,
+  setPriceRange,
+  setSortBy,
+  setSortType,
+  openModalFilter,
+  closeModalFilter,
+} = artworkFilterSlice.actions;
 export default artworkFilterSlice.reducer;

@@ -1,10 +1,10 @@
 import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
-import { openArtworkFilterModal } from '../../store/artworkFilterModalSlice';
 import ArtworkFilter from '../ArtworkFilter';
 import ArtworkFilterModal from '../ArtworkFilter/ArtworkFilterModal';
 import ArtworkSorting from '../ArtworkFilter/ArtworkSorting';
 import ArtworkContainer from '../ArtworkContainer';
+import { openModalFilter } from '../../store/artworkFilterSlice';
 
 function ArtworkSection() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function ArtworkSection() {
         </div>
         <div
           className="cursor-pointer rounded-md border border-black text-2xl text-black lg:hidden"
-          onClick={() => dispatch(openArtworkFilterModal())}
+          onClick={() => dispatch(openModalFilter())}
         >
           <Icon icon="system-uicons:filtering" />
         </div>

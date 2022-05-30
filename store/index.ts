@@ -1,17 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import artworkFilterModalReducer from './artworkFilterModalSlice';
-import categoryFilterReducer from './categoryFilterSlice';
-import priceRangeFilterReducer from './priceRangeFilterState';
-import artworkSortingReducer from './artworkSortingSlice';
 import artworkFilterReducer from './artworkFilterSlice';
 import cartReducer from './cartSlice';
 
 export const store = configureStore({
   reducer: {
-    artworkFilterModal: artworkFilterModalReducer,
-    categoryFilter: categoryFilterReducer,
-    priceRangeFilter: priceRangeFilterReducer,
-    artworkSorting: artworkSortingReducer,
     cart: cartReducer,
     artworkFilter: artworkFilterReducer,
   },
