@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type SortType = 'ASC' | 'DESC';
+
 interface ArtworkFilterStore {
   categories: string[];
   currentPage: number;
   priceRange: number[];
   sortBy: string;
-  sortType: 'ASC' | 'DESC';
+  sortType: SortType;
 }
 
 const initialState: ArtworkFilterStore = {
@@ -29,8 +31,15 @@ export const artworkFilterSlice = createSlice({
     setPriceRange: (state, action: PayloadAction<number[]>) => {
       state.priceRange = action.payload;
     },
+    setSortBy: (state, action: PayloadAction<string>) => {
+      state.sortBy = action.payload;
+    },
+    setSortType: (state, action: PayloadAction<SortType>) => {
+      state.sortType = action.payload;
+    },
   },
 });
 
-export const { setCategories, setCurrentPage, setPriceRange } = artworkFilterSlice.actions;
+export const { setCategories, setCurrentPage, setPriceRange, setSortBy, setSortType } =
+  artworkFilterSlice.actions;
 export default artworkFilterSlice.reducer;

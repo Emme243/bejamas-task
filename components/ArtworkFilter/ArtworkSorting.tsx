@@ -1,29 +1,45 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks/useAppStore';
-import { setSortBy, toggleSortType } from '../../store/artworkSortingSlice';
+import { setSortBy, setSortType, SortType } from '../../store/artworkFilterSlice';
+import { useRouter } from 'next/router';
+import useQueryRoute from '../../hooks/useQueryRoute';
 
 function ArtworkSorting() {
+  const router = useRouter();
   const dispatch = useDispatch();
-  const sortBy = useAppSelector(state => state.artworkSorting.sortBy);
-  const sortType = useAppSelector(state => state.artworkSorting.sortType);
+  const { setSortingToUrl } = useQueryRoute();
+
+  const sortBy = useAppSelector(state => state.artworkFilter.sortBy);
+  const sortType = useAppSelector(state => state.artworkFilter.sortType);
+  useEffect(() => {
+    const sortByQuery = router.query.sortBy as string | undefined;
+    const sortBy = sortByQuery || 'name';
+    const sortTypeQuery = router.query.sortType;
+    const sortType = (sortTypeQuery || 'ASC') as SortType;
+    dispatch(setSortBy(sortBy));
+    dispatch(setSortType(sortType));
+  }, [dispatch, router.query.sortBy, router.query.sortType]);
+  const handleSortByChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const newSortBy = e.target.value;
+    setSortingToUrl(newSortBy, sortType);
+  };
+  const handleSortTypeChange = () => {
+    const newSortType = sortType === 'ASC' ? 'DESC' : 'ASC';
+    setSortingToUrl(sortBy, newSortType);
+  };
 
   const iconBy = sortBy === 'name' ? 'alpha' : 'numeric';
   const iconType = sortType === 'ASC' ? '' : '-alt';
   const iconName = `bi:sort-${iconBy}-down${iconType}`;
-
-  const handleSortByChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const sortBy = e.target.value;
-    dispatch(setSortBy(sortBy));
-  };
 
   return (
     <>
       <Icon
         icon={iconName}
         className="cursor-pointer text-xl"
-        onClick={() => dispatch(toggleSortType())}
+        onClick={() => handleSortTypeChange()}
       />
       <span className="text-gray-middle">Sort by</span>
       <select

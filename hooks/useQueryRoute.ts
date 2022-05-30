@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { SortType } from '../store/artworkFilterSlice';
 
 interface Query {
   categories?: string;
@@ -44,10 +45,16 @@ function useQueryRoute() {
     setQueryParamsToUrl(query);
   }
 
+  function setSortingToUrl(sortBy: string, sortType: SortType) {
+    const query: Query = { sortBy, sortType };
+    setQueryParamsToUrl(query);
+  }
+
   return {
     setCategoriesToUrl,
     setCurrentPageToUrl,
     setPriceRangeToUrl,
+    setSortingToUrl,
     categories,
     currentPage,
     priceRange,
