@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>Bejamas Task | Emmanuel</title>
           <meta
             name="description"
             content="Awesome stock photos that you can use everywhere. Browse millions of high-quality royalty stock images that you can use for your projects."
